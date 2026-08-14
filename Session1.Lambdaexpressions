@@ -1,0 +1,77 @@
+interface PerformOperation {
+    boolean check(int a);
+}
+
+public class Solution {
+
+    public static PerformOperation isOdd() {
+        return n -> n % 2 != 0;
+    }
+
+    public static void main(String[] args) {
+        PerformOperation op = isOdd();
+
+        System.out.println(op.check(5));  // true
+        System.out.println(op.check(8));  // false
+    }
+}
+
+
+---------------------------------------------------------------------
+
+interface PerformOperation {
+    boolean check(int a);
+}
+
+public class Solution {
+
+    public static PerformOperation isPrime() {
+        return n -> {
+            if (n <= 1) return false;
+            for (int i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i == 0) return false;
+            }
+            return true;
+        };
+    }
+
+    public static void main(String[] args) {
+        PerformOperation op = isPrime();
+
+        System.out.println(op.check(7));   // true
+        System.out.println(op.check(10));  // false
+    }
+}
+
+
+----------------------------------------------------------------------
+
+
+interface PerformOperation {
+    boolean check(int a);
+}
+
+public class Solution {
+
+    public static PerformOperation isPalindrome() {
+        return n -> {
+            int original = n;
+            int reverse = 0;
+
+            while (n > 0) {
+                int digit = n % 10;
+                reverse = reverse * 10 + digit;
+                n = n / 10;
+            }
+
+            return original == reverse;
+        };
+    }
+
+    public static void main(String[] args) {
+        PerformOperation op = isPalindrome();
+
+        System.out.println(op.check(121)); // true
+        System.out.println(op.check(123)); // false
+    }
+}
